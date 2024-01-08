@@ -1,5 +1,5 @@
 ---
-- name: Ansible Install Jenkins on Ubuntu18 Server
+- name: Ansible Install Jenkins on Ubuntu 22.04 Server
   gather_facts: false
   hosts: all
   tasks:
