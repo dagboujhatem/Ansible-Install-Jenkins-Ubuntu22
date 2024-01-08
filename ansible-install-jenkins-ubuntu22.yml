@@ -14,10 +14,10 @@
       command: apt update
 
     - name: Install Java
-      command: apt install -y openjdk-8-jdk
+      command: apt install -y openjdk-11-jdk
 
-    - name: Install Java
-      command: apt install -y openjdk-8-jdk
+    - name: Check the Java version
+      command: java --version
 
     - name: Install key for the Jenkins apt repository
       apt_key:
