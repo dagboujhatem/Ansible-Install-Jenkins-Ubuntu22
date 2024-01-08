@@ -24,21 +24,14 @@
         name: openjdk-11-jdk
         state: present
 
-    - name: Install key for the Jenkins apt repository
+    - name: Add gpg key for jenkins installation
       become: true
-      apt_key:
-        url: "https://pkg.jenkins.io/debian/jenkins-ci.org.key"
-        state: present
-
-    - name: Install access to the Jenkins apt repository
-      become: true
-      apt_repository:
-        repo: deb http://pkg.jenkins.io/debian-stable binary/
-        state: present
-        filename: 'jenkins-stable'
+      command: curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 
     - name: APT Update for the Jenkins repository
-      command: apt update
+      become: true
+      apt: 
+        update: yes
 
     - name: Install Jenkins package
       become: true
