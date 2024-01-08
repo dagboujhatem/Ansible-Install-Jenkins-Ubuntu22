@@ -3,7 +3,7 @@ Ansible playbook to install a Jenkins server using ssh.
 
 Command for execute playbook: 
 
-    ansible-playbook -i 192.168.0.X, -u root --extra-vars ansible_ssh_pass=Password123 ansible-install-jenkins-ubuntu22.yml
+    ansible-playbook -i 192.168.0.X, -u root --extra-vars ansible_ssh_pass=Password123 ansible-install-jenkins-ubuntu22.yml -KK
 
 ## Description: 
 
