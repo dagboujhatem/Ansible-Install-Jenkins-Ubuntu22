@@ -67,6 +67,13 @@
         update_cache: yes
         install_recommends: no
 
+    # sudo service jenkins start
+    - name: Start Jenkins
+      become: true
+      service: 
+        name: jenkins
+        state: started
+
     - name: Wait for Jenkins to start up
       wait_for: timeout=35
 
