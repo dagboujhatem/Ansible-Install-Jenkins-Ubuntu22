@@ -79,7 +79,7 @@
     - name: Start Jenkins
       become: true
       command: service jenkins start
-      warn: false
+        warn: false
 
     - name: Wait for Jenkins to start up
       wait_for: timeout=35
