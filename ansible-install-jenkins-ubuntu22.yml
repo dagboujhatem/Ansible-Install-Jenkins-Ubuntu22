@@ -10,8 +10,13 @@
 
     - debug: msg="{{ hname.stdout }}"
 
-    - name: APT Update
-      command: apt update
+    
+    - name: APT install and upgrade apt packages
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400 #One day
 
     - name: Install Java
       command: apt install -y openjdk-11-jdk
