@@ -11,11 +11,10 @@
     - debug: msg="{{ hname.stdout }}"
 
     
-    - name: APT install and upgrade apt packages
+    - name: APT upgrade apt packages
       become: true
       apt:
-        # update: yes
-        upgrade: yes
+        upgrade: "yes"
         update_cache: yes
         cache_valid_time: 86400 #One day
 
