@@ -54,11 +54,17 @@
         url : https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
         state: present
 
+    - name: Copy jenkins.list to /etc/apt/sources.list.d/jenkins.list
+      copy:
+        src: jenkins.list
+        dest: /etc/apt/sources.list.d/jenkins.list
+
     - name: Install Jenkins
       become: true
-      get_url: 
-        url: https://pkg.jenkins.io/redhat/jenkins.repo
-        dest:  /etc/yum.repos.d/jenkins.repo
+      apt: 
+        name: jenkins
+        update_cache: yes
+        install_recommends: no
 
     # - name: APT Update for the Jenkins repository
     #   become: true
