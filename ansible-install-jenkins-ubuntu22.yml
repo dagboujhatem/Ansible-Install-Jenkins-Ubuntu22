@@ -24,9 +24,6 @@
         name: openjdk-11-jdk
         state: present
 
-    - name: Check the Java version
-      command: java --version
-
     - name: Install key for the Jenkins apt repository
       apt_key:
         url: "https://pkg.jenkins.io/debian/jenkins-ci.org.key"
