@@ -67,25 +67,14 @@
         update_cache: yes
         install_recommends: no
 
-    # - name: APT Update for the Jenkins repository
-    #   become: true
-    #   apt: 
-    #     update: yes
+    - name: Wait for Jenkins to start up
+      wait_for: timeout=35
 
-    # - name: Install Jenkins package
-    #   become: true
-    #   apt:
-    #     name: jenkins
-    #     state: installed
+    - name: Get Jenkins password
+      shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+      changed_when: false
+      register: result
 
-    # - name: Wait for Jenkins to start up
-    #   wait_for: timeout=35
-
-    # - name: Get Jenkins password
-    #   shell: cat /var/lib/jenkins/secrets/initialAdminPassword
-    #   changed_when: false
-    #   register: result
-
-    # - name: Password to "Unlock Jenkins"
-    #   debug:
-    #     var: result.stdout
+    - name: Password to "Unlock Jenkins"
+      debug:
+        var: result.stdout
