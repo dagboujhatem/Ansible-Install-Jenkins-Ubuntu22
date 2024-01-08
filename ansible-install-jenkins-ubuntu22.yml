@@ -10,6 +10,13 @@
 
     - debug: msg="{{ hname.stdout }}"
 
+
+    - name: Check Hostname
+      command: hostname
+      register: hname
+
+    - debug: msg="{{ hname.stdout }}"
+
     
     - name: APT upgrade apt packages
       become: true
@@ -72,11 +79,13 @@
     - name: Start Jenkins
       become: true
       command: service jenkins start
+      warn: false
 
     - name: Wait for Jenkins to start up
       wait_for: timeout=35
 
     - name: Get Jenkins password
+      become: true
       shell: cat /var/lib/jenkins/secrets/initialAdminPassword
       changed_when: false
       register: result
