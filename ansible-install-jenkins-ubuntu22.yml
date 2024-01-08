@@ -11,11 +11,11 @@
     - debug: msg="{{ hname.stdout }}"
 
 
-    - name: Check Hostname
-      command: hostname
-      register: hname
+    - name: Check Linux distribution
+      command: lsb_release -a
+      register: distribution
 
-    - debug: msg="{{ hname.stdout }}"
+    - debug: msg="{{ distribution.stdout }}"
 
     
     - name: APT upgrade apt packages
