@@ -14,11 +14,11 @@
     - name: APT install and upgrade apt packages
       become: true
       apt:
-        update: yes
+        # update: yes
         upgrade: yes
         update_cache: yes
         cache_valid_time: 86400 #One day
-        
+
     - name: Add Docker GPG apt Key
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
