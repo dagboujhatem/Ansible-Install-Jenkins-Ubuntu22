@@ -48,9 +48,9 @@
         name: openjdk-11-jdk
         state: present
 
-    - name: Import Jenkins Key
+    - name: Add Jenkins APT key
       become: true
-      rpm_key: 
+      apt_key: 
         url : https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
         state: present
 
