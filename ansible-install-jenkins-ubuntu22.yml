@@ -48,29 +48,31 @@
         name: openjdk-11-jdk
         state: present
 
-    - name: Add gpg key for jenkins installation
+    - name: Install Jenkins
       become: true
-      command: curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+      get_url: 
+        url: https://pkg.jenkins.io/redhat/jenkins.repo
+        dest:  /etc/yum.repos.d/jenkins.repo
 
-    - name: APT Update for the Jenkins repository
-      become: true
-      apt: 
-        update: yes
+    # - name: APT Update for the Jenkins repository
+    #   become: true
+    #   apt: 
+    #     update: yes
 
-    - name: Install Jenkins package
-      become: true
-      apt:
-        name: jenkins
-        state: installed
+    # - name: Install Jenkins package
+    #   become: true
+    #   apt:
+    #     name: jenkins
+    #     state: installed
 
-    - name: Wait for Jenkins to start up
-      wait_for: timeout=35
+    # - name: Wait for Jenkins to start up
+    #   wait_for: timeout=35
 
-    - name: Get Jenkins password
-      shell: cat /var/lib/jenkins/secrets/initialAdminPassword
-      changed_when: false
-      register: result
+    # - name: Get Jenkins password
+    #   shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+    #   changed_when: false
+    #   register: result
 
-    - name: Password to "Unlock Jenkins"
-      debug:
-        var: result.stdout
+    # - name: Password to "Unlock Jenkins"
+    #   debug:
+    #     var: result.stdout
