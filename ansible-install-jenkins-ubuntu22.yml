@@ -25,11 +25,13 @@
         state: present
 
     - name: Install key for the Jenkins apt repository
+      become: true
       apt_key:
         url: "https://pkg.jenkins.io/debian/jenkins-ci.org.key"
         state: present
 
     - name: Install access to the Jenkins apt repository
+      become: true
       apt_repository:
         repo: deb http://pkg.jenkins.io/debian-stable binary/
         state: present
@@ -39,6 +41,7 @@
       command: apt update
 
     - name: Install Jenkins package
+      become: true
       apt:
         name: jenkins
         state: installed
