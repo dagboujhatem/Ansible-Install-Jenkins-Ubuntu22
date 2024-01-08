@@ -48,16 +48,17 @@
         name: openjdk-11-jdk
         state: present
 
-    - name: Add Jenkins APT key
+    - name: Add the Jenkins public GPG key to the apt repo
       become: true
       apt_key: 
-        url : https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+        url : http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key
         state: present
 
-    - name: Copy jenkins.list to /etc/apt/sources.list.d/jenkins.list
-      copy:
-        src: jenkins.list
-        dest: /etc/apt/sources.list.d/jenkins.list
+    - name: Add Jenkins apt repo to the trusted sources list
+      become: true
+      apt_repository:
+        repo: 'deb http://pkg.jenkins-ci.org/debian binary/'
+        state: present
 
     - name: Install Jenkins
       become: true
