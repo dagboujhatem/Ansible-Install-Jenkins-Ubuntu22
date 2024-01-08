@@ -68,11 +68,10 @@
         install_recommends: no
 
     # sudo service jenkins start
+    # systemctl start Jenkins
     - name: Start Jenkins
       become: true
-      service: 
-        name: jenkins
-        state: started
+      command: service jenkins start
 
     - name: Wait for Jenkins to start up
       wait_for: timeout=35
